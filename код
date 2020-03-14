@@ -1,0 +1,14 @@
+from moviepy.editor import *
+from moviepy.video import *
+clip1 = VideoFileClip ('catsing.mp4')
+clip2 = (VideoFileClip ('kotikchi.mp4').subclip(0,163).
+         resize(0.25).    
+         margin( 6,color=(255,255,255)).  
+         margin( bottom=20, right=20, opacity=0). 
+         set_pos(('right','bottom')) )
+audioclip = AudioFileClip('AnIDuB_-_Naruto_2_sezon_16_opening_(mp3.mn).mp3')
+fx.all.fadein(clip2, 15, initial_color=1)
+fx.all.loop(clip1, n=5, duration=5)
+video = CompositeVideoClip([clip1,clip2])
+video = video.set_audio(audioclip)
+video.write_videofile('myvideo.mp4')
